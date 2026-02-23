@@ -18,6 +18,7 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] float airLedgeCheckDistance = 0.8f;
     [SerializeField] Vector3 ledgeGrabTarget;
     [SerializeField] float ledgeGrabSpeed;
+    int playerDirection;
 
     Vector3 playerPosition;
     Vector2 moveVector;
@@ -27,6 +28,7 @@ public class Player_Controller : MonoBehaviour
     Rigidbody2D playerRigidbody;
     SpriteRenderer spriteRenderer;
     InputAction moveAction;
+
     InputAction jumpAction;
 
     void Awake()
@@ -58,6 +60,15 @@ public class Player_Controller : MonoBehaviour
             Jump();
         }
      }
+     public Vector2 GetMoveVector()
+{
+    return moveVector;
+}
+
+public int GetPlayerDirection()
+{
+    return playerDirection;
+}
 
          void MovePlayer()
     {
@@ -85,12 +96,18 @@ public class Player_Controller : MonoBehaviour
         }
     }
     void TurnPlayer()
-    {
-        if (moveVector.x < 0)
-            spriteRenderer.flipX = true;
-        if (moveVector.x > 0)
-            spriteRenderer.flipX = false;
-    }
+ {
+     if (moveVector.x < 0)
+     {
+         spriteRenderer.flipX = true;
+         playerDirection = -1;
+     }
+     if (moveVector.x > 0)
+     {
+         spriteRenderer.flipX = false;
+         playerDirection = 1;
+     }
+ }
     void LedgeGrabCheck()
 {
     Vector3 targetOriented = ledgeGrabTarget;
