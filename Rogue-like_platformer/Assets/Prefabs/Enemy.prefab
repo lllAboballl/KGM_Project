@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 6028351278394802951}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.65, y: -1.77, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -174,6 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   target: {fileID: 0}
   moveSpeed: 5
+  lastKnownTargetPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1324766996823272228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +190,8 @@ MonoBehaviour:
   patrolPointA: {fileID: 0}
   patrolPointB: {fileID: 0}
   patrolSpeed: 2
+  searchRadius: 3
+  searchTime: 5
 --- !u!114 &5250205572191758446
 MonoBehaviour:
   m_ObjectHideFlags: 0

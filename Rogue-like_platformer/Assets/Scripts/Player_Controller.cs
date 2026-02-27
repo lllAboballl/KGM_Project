@@ -108,6 +108,7 @@ public int GetPlayerDirection()
          playerDirection = 1;
      }
  }
+
     void LedgeGrabCheck()
 {
     Vector3 targetOriented = ledgeGrabTarget;

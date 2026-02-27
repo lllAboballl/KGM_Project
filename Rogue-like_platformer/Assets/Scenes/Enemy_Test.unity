@@ -1075,6 +1075,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6291707202398295376, guid: c2c7da74bef2afa46818e9df641a2ad9, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 8513978963266434032, guid: 2059462ad7cfe7f4a88b185e7c61c5f5, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
