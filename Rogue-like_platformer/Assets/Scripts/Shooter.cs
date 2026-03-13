@@ -1,68 +1,45 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Shooter : MonoBehaviour
 {
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] float bulletSpeed = 10f;
     [SerializeField] float bulletSize = 1f;
-    [SerializeField] float firerate = 2f;
 
-    float timeSinceLastShot = 0;
-    bool canShoot = false;
+    Vector2 bulletDirection;
 
     Player_Controller playerController;
-    Animator animator;
+    InputAction attackAction;
 
     void Awake()
     {
        playerController = GetComponent<Player_Controller>();
-       animator = GetComponent<Animator>();
+       attackAction = InputSystem.actions.FindAction("Attack");
     }
 
     void Update()
     {
-        if (timeSinceLastShot >= firerate)
-            Shoot();
-
-        timeSinceLastShot += Time.deltaTime;
+        Shoot();
     }
 
     void Shoot()
     {
-
-        if (Input.GetButton("Aim"))
-        {
-            animator.SetBool("aiming", true);
-            playerController.canMove = false;
-        }
-        else
-        {
-            animator.SetBool("aiming", false);
-            playerController.canMove = true;
-        }
-
-        if (!canShoot) { return; }
-
-        if (Input.GetButtonDown("Attack"))
+       if (attackAction.WasReleasedThisFrame())
         {
             SpawnBullet();
-            timeSinceLastShot = 0;
         }
-    }
-
-    void EnableShooting()
-    {
-        canShoot = true;
     }
 
     void SpawnBullet()
     {
+
         GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
 
-        bullet.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * bulletSpeed;
-        bullet.GetComponent<Rigidbody2D>().rotation = Mathf.Atan2(Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Horizontal")) * Mathf.Rad2Deg;
+        bullet.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(Mathf.RoundToInt(playerController.GetMoveVector().x), Mathf.RoundToInt(playerController.GetMoveVector().y)) * bulletSpeed;
+        bullet.GetComponent<Rigidbody2D>().rotation = Mathf.Atan2(Mathf.RoundToInt(playerController.GetMoveVector().y), Mathf.RoundToInt(playerController.GetMoveVector().x)) * Mathf.Rad2Deg;
 
-        if (Input.GetAxisRaw("Vertical") != 1)
+        if (Mathf.RoundToInt(playerController.GetMoveVector().y) != 1)
         {
             bullet.GetComponent<Rigidbody2D>().linearVelocity = Vector2.right * playerController.GetPlayerDirection() * bulletSpeed;
             bullet.GetComponent<Rigidbody2D>().rotation = playerController.GetPlayerDirection();
