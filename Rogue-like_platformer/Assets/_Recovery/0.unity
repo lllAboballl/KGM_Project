@@ -1326,6 +1326,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 409113053}
+  - component: {fileID: 409113052}
   - component: {fileID: 409113051}
   - component: {fileID: 409113050}
   m_Layer: 0
@@ -1479,6 +1480,14 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!222 &409113052
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409113049}
+  m_CullTransparentMesh: 1
 --- !u!224 &409113053
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9167,33 +9176,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4791043280049256798, guid: c2c7da74bef2afa46818e9df641a2ad9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3166194195325939069}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2c7da74bef2afa46818e9df641a2ad9, type: 3}
---- !u!1 &3166194195325939068 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4791043280049256798, guid: c2c7da74bef2afa46818e9df641a2ad9, type: 3}
-  m_PrefabInstance: {fileID: 3166194195325939067}
-  m_PrefabAsset: {fileID: 0}
---- !u!111 &3166194195325939069
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3166194195325939068}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Animation: {fileID: 0}
-  m_Animations:
-  - {fileID: 0}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_UpdateMode: 0
-  m_CullingType: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
