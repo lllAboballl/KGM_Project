@@ -11,7 +11,8 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] float groundCheckDistanceY = 0.49f; 
     [SerializeField] float groundCheckOffset = 0f;
     [SerializeField] LayerMask groundLayer;
-    int playerDirection;
+    
+    int playerDirection = 1;
 
     public bool isAlive = true;
     public bool canMove = true;
@@ -69,12 +70,14 @@ public class Player_Controller : MonoBehaviour
         {
             if (Input.GetAxisRaw("Horizontal") < 0)
             {
-                spriteRenderer.flipX = true;
+                transform.localScale = new Vector3(-1, 1, 1);
+                //spriteRenderer.flipX = true;
                 playerDirection = -1;
             }
             if (Input.GetAxisRaw("Horizontal") > 0)
             {
-                spriteRenderer.flipX = false;
+                transform.localScale = Vector3.one;
+                //spriteRenderer.flipX = false;
                 playerDirection = 1;
             }
         }

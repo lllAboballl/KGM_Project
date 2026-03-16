@@ -3,33 +3,47 @@ using UnityEngine;
 public class Swinger : MonoBehaviour
 {
     [SerializeField] float swingSpeed = 1f;
+
     [Header("Hi")]
     [SerializeField] Collider2D swingHitbox;
     [SerializeField] SpriteRenderer swingGraphics;
-    [SerializeField] Animator animator;
+    
+    float timeSinceLastSwing = 0;
 
-    float swingCooldown = 1f;
+    Player_Controller playerController;
+    Shooter shooter;
+    Animator animator;
 
     void Awake()
     {
+        playerController = GetComponent<Player_Controller>();
+        shooter = GetComponent<Shooter>();
+        animator = GetComponent<Animator>();
+        
         DisableSwinger();
     }
 
     void Update()
     {
         Swing();
-
-        Debug.Log(swingCooldown);
+        timeSinceLastSwing += Time.deltaTime;
     }
 
     void Swing()
     {
-        if (swingCooldown > 0) { swingCooldown -= Time.deltaTime; return; }
-        swingCooldown = swingSpeed;
-        if (!Input.GetButtonDown("Fire1")) { return; }
-        //animator.Play()
+        if (timeSinceLastSwing < swingSpeed) { return; }
 
+        if (shooter.GetCanShoot()) { return; }
+        
+        if (Input.GetButtonDown("Attack")) 
+        {
+            animator.SetTrigger("swing");
+            timeSinceLastSwing = 0;
+        }
+        
     }
+
+    
 
     //--------Animator stuff---------\\
     void EnableSwinger()
@@ -43,7 +57,4 @@ public class Swinger : MonoBehaviour
         swingHitbox.enabled = false; 
         swingGraphics.enabled = false; 
     }
-
-
-
 }
