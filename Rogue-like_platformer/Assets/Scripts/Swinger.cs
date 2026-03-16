@@ -27,7 +27,7 @@ public class Swinger : MonoBehaviour
         if (swingCooldown > 0) { swingCooldown -= Time.deltaTime; return; }
         swingCooldown = swingSpeed;
         if (!Input.GetButtonDown("Fire1")) { return; }
-        animator.Play()
+        //animator.Play()
 
     }
 
