@@ -2024,7 +2024,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &409113050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6316,7 +6316,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1310353057
 Transform:
   m_ObjectHideFlags: 0
@@ -7361,7 +7361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1687945264
 Transform:
   m_ObjectHideFlags: 0
@@ -9061,6 +9061,10 @@ PrefabInstance:
     - target: {fileID: 370050023235927779, guid: c2c7da74bef2afa46818e9df641a2ad9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 841347044422712953, guid: c2c7da74bef2afa46818e9df641a2ad9, type: 3}
+      propertyPath: swingSpeed
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4718733217532170984, guid: c2c7da74bef2afa46818e9df641a2ad9, type: 3}
       propertyPath: slider

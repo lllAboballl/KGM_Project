@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Swinger : MonoBehaviour
 {
-    [SerializeField] float swingSpeed = 1f;
+    [SerializeField] float swingSpeed = 0.5f;
 
     [Header("Hi")]
     [SerializeField] Collider2D swingHitbox;
