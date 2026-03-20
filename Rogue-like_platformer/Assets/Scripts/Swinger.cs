@@ -9,7 +9,7 @@ public class Swinger : MonoBehaviour
     [SerializeField] SpriteRenderer swingGraphics;
     
     float timeSinceLastSwing = 0;
-
+    
     Player_Controller playerController;
     Shooter shooter;
     Animator animator;
@@ -25,7 +25,8 @@ public class Swinger : MonoBehaviour
 
     void Update()
     {
-        Swing();
+        if (!shooter.GetAiming()) { Swing(); }
+       
         timeSinceLastSwing += Time.deltaTime;
     }
 
@@ -33,7 +34,7 @@ public class Swinger : MonoBehaviour
     {
         if (timeSinceLastSwing < swingSpeed) { return; }
 
-        if (shooter.GetCanShoot()) { return; }
+      
         
         if (Input.GetButtonDown("Attack")) 
         {
@@ -43,7 +44,7 @@ public class Swinger : MonoBehaviour
         
     }
 
-    
+   
 
     //--------Animator stuff---------\\
     void EnableSwinger()

@@ -10,41 +10,54 @@ public class Shooter : MonoBehaviour
     float timeSinceLastShot = 0;
     bool canShoot = false;
 
+    bool aiming = false;
+
     Player_Controller playerController;
+    Swinger swinger;
     Animator animator;
     GameObject bullet;
 
     void Awake()
     {
         playerController = GetComponent<Player_Controller>();
+        swinger = GetComponent<Swinger>();
         animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        Shoot();
+        Aim();
         timeSinceLastShot += Time.deltaTime;
     }
 
-    void Shoot()
+    void Aim()
     {
 
 
         if (Input.GetButton("Aim"))
         {
             animator.SetBool("aiming", true);
-            playerController.canMove = false;
+            aiming = true;
         }
         else
         {
             animator.SetBool("aiming", false);
-            playerController.canMove = true;
+            animator.SetBool("canShoot", false);
             canShoot = false;
+            aiming = false;
         }
 
         if (!canShoot || timeSinceLastShot < firerate) { return; }
 
         if (Input.GetButtonDown("Attack"))
+        {
+            animator.SetTrigger("shoot");
+        }
+    }
+
+    void Shoot()
+    {
+        if (canShoot) 
         {
             SpawnBullet();
             timeSinceLastShot = 0;
@@ -54,11 +67,17 @@ public class Shooter : MonoBehaviour
     void EnableShooting()
     {
         canShoot = true;
+        animator.SetBool("canShoot", true);
     }
 
     public bool GetCanShoot()
     {
         return canShoot;
+    }
+
+    public bool GetAiming()
+    {
+        return aiming;
     }
 
     void SpawnBullet()

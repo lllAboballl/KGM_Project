@@ -13,9 +13,10 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
     
     int playerDirection = 1;
+    bool canMove = true;
 
     public bool isAlive = true;
-    public bool canMove = true;
+    
 
     Rigidbody2D playerRigidbody;
     SpriteRenderer spriteRenderer; void Awake()
@@ -81,5 +82,15 @@ public class Player_Controller : MonoBehaviour
                 playerDirection = 1;
             }
         }
+
+    void EnableMovement()
+    {
+        canMove = true;
     }
+
+    void DisableMovement()
+    {
+        canMove = false;
+    }
+}
 
