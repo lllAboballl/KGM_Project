@@ -19,14 +19,20 @@ public class Player_Controller : MonoBehaviour
     
 
     Rigidbody2D playerRigidbody;
-    SpriteRenderer spriteRenderer; void Awake()
+    SpriteRenderer spriteRenderer; 
+    Animator animator;
+    
+    void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
+        animator.SetBool("isGrounded", TouchingGround());
+
         if (!isAlive) { return; }
         TurnPlayer();
 
@@ -59,6 +65,7 @@ public class Player_Controller : MonoBehaviour
             new Vector2(groundCheckDistanceX, groundCheckDistanceY), 0, groundLayer);
         return isGrounded;
     }
+
 
     void Jump()
     {
