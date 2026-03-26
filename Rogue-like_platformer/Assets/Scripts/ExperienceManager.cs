@@ -4,7 +4,7 @@ using TMPro;
 
 public class ExperienceManager : MonoBehaviour
 {
-    [SerializeField] int totalXp = 1;
+    public int totalXp = 1;
 
     [SerializeField] int currentLevel = 0;
 
@@ -48,7 +48,7 @@ public class ExperienceManager : MonoBehaviour
         return requiredXp;
     }
 
-    void UpdateXpBar()
+    public void UpdateXpBar()
     {
         currentLevel = LevelCalculator(totalXp);
         levelText.text = currentLevel.ToString();

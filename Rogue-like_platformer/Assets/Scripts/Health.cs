@@ -1,4 +1,6 @@
+using Unity.VectorGraphics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour
@@ -9,8 +11,12 @@ public class Health : MonoBehaviour
     public Slider slider;
 
     public bool isPlayer;
+
+    ExperienceManager xpManager;
     void Start()
     {
+        xpManager = FindFirstObjectByType<ExperienceManager>();
+
         health = maxHealth;
         if (slider != null)
         {  
@@ -35,11 +41,13 @@ public class Health : MonoBehaviour
     {
         if (isPlayer)
         {
-            Debug.Log("Player dead");
+            SceneManager.LoadScene("Liams test scene");
         }
         else
         {
             Destroy(gameObject);
+            xpManager.totalXp += 3;
+            xpManager.UpdateXpBar();
         }
     }
 

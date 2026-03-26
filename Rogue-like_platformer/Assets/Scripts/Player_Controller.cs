@@ -31,7 +31,7 @@ public class Player_Controller : MonoBehaviour
 
     void Update()
     {
-        animator.SetBool("isGrounded", TouchingGround());
+        Animations();
 
         if (!isAlive) { return; }
         TurnPlayer();
@@ -97,7 +97,14 @@ public class Player_Controller : MonoBehaviour
 
     void DisableMovement()
     {
+        if (TouchingGround())
         canMove = false;
+    }
+
+    void Animations()
+    {
+        animator.SetBool("isMoving", playerRigidbody.linearVelocityX != 0 && Input.GetAxisRaw("Horizontal") != 0);
+        animator.SetBool("isGrounded", TouchingGround());
     }
 }
 
