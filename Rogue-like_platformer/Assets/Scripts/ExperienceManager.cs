@@ -14,12 +14,12 @@ public class ExperienceManager : MonoBehaviour
 
     void Start()
     {
-        UpdateXpBar();
+        
     }
 
     void Update()
     {
-        
+        UpdateXpBar();
     }
 
     int LevelCalculator(int xp)
@@ -42,7 +42,6 @@ public class ExperienceManager : MonoBehaviour
         while(LevelCalculator(requiredXp) < levelToGet)
         {
             requiredXp++;
-         
         }
 
         return requiredXp;
@@ -56,11 +55,16 @@ public class ExperienceManager : MonoBehaviour
         int xpRequiredForNextLevel = GetXpRequiredForLevel(currentLevel + 1);
         int xpRequiredForCurrentLevel = GetXpRequiredForLevel(currentLevel);
 
-        float xpBarPercentage = ((float)xpRequiredForNextLevel -
-            (float)xpRequiredForCurrentLevel) /
-            (float)xpRequiredForNextLevel;
-       
+        float xpAfterLastLevel = (float)totalXp -
+            (float)xpRequiredForCurrentLevel;
+
+        float xpDifferenceBetweenLastAndNextLevel = (float)xpRequiredForNextLevel -
+            (float)xpRequiredForCurrentLevel;
+
+        float xpBarPercentage = xpAfterLastLevel / xpDifferenceBetweenLastAndNextLevel;
+
         fillimage.fillAmount = xpBarPercentage;
+
     }
 
 }
