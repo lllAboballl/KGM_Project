@@ -13,9 +13,11 @@ public class Health : MonoBehaviour
     public bool isPlayer;
 
     ExperienceManager xpManager;
+    EnemySpawner spawner;
     void Start()
     {
         xpManager = FindFirstObjectByType<ExperienceManager>();
+        spawner = FindFirstObjectByType<EnemySpawner>();
 
         health = maxHealth;
         if (slider != null)
@@ -48,7 +50,7 @@ public class Health : MonoBehaviour
             Destroy(gameObject);
             xpManager.totalXp += 3;
             xpManager.UpdateXpBar();
+            spawner.SpawnEnemy();
         }
     }
-
 }

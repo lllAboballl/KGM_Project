@@ -44,6 +44,8 @@ GameObject:
   - component: {fileID: 8866002233150223962}
   - component: {fileID: -8498967757432636762}
   - component: {fileID: 4677499579893822751}
+  - component: {fileID: -7693742718413119001}
+  - component: {fileID: 5326174081738559933}
   m_Layer: 0
   m_Name: Charge Enemy
   m_TagString: Untagged
@@ -214,6 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChargeEnemy
   moveSpeed: 2
+  chargeSpeed: 10
   checkDistance: 1
   chargeCheckDistance: 10
   wallCheckDistance: 0.1
@@ -229,6 +232,37 @@ MonoBehaviour:
   lookPosition: {fileID: 4970413725271536730}
   groundCheckPosition: {fileID: 2027794255500009499}
   forwardCheckPosition: {fileID: 2336197583930088573}
+--- !u!114 &-7693742718413119001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3848103369602026509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b65be28c6047e3b4e93c874188769c66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  health: 10
+  maxHealth: 10
+  slider: {fileID: 0}
+  isPlayer: 0
+--- !u!114 &5326174081738559933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3848103369602026509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39d650c241dea9845bc8b25499a70c54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Damage
+  damage: 2
+  stunTime: 0.5
+  playerHitCooldown: 1
 --- !u!1 &7106734906739500532
 GameObject:
   m_ObjectHideFlags: 0

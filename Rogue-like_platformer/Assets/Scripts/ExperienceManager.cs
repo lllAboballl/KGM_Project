@@ -14,12 +14,12 @@ public class ExperienceManager : MonoBehaviour
 
     void Start()
     {
-        
+        UpdateXpBar();
     }
 
     void Update()
     {
-        UpdateXpBar();
+        
     }
 
     int LevelCalculator(int xp)

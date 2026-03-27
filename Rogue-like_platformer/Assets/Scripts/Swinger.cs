@@ -19,8 +19,6 @@ public class Swinger : MonoBehaviour
         playerController = GetComponent<Player_Controller>();
         shooter = GetComponent<Shooter>();
         animator = GetComponent<Animator>();
-        
-        DisableSwinger();
     }
 
     void Update()
@@ -42,20 +40,5 @@ public class Swinger : MonoBehaviour
             timeSinceLastSwing = 0;
         }
         
-    }
-
-   
-
-    //--------Animator stuff---------\\
-    void EnableSwinger()
-    { 
-        swingHitbox.enabled = true;
-        swingGraphics.enabled = true;
-    }
-
-    void DisableSwinger()
-    {
-        swingHitbox.enabled = false; 
-        swingGraphics.enabled = false; 
     }
 }
