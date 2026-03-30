@@ -92,7 +92,6 @@ public class Shooter : MonoBehaviour
             bullet.GetComponent<Rigidbody2D>().linearVelocity = Vector2.right * playerController.GetPlayerDirection() * bulletSpeed;
             bullet.GetComponent<Rigidbody2D>().rotation = playerController.GetPlayerDirection();
         }
-        
     }
 }
 

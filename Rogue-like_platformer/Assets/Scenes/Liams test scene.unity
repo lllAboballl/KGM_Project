@@ -8682,7 +8682,7 @@ Transform:
   m_GameObject: {fileID: 1229488154}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.41, y: -0.030000687, z: 0}
+  m_LocalPosition: {x: 12.75, y: -11.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11139,6 +11139,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   enemy: {fileID: 3848103369602026509, guid: e8fbd7c98592d1a42ac8f1d27f91bc36, type: 3}
+  spawnPositions:
+  - {fileID: 2145474023}
+  - {fileID: 1836896269}
+  - {fileID: 1295027891}
+  - {fileID: 1229488155}
 --- !u!1001 &1691233058
 PrefabInstance:
   m_ObjectHideFlags: 0
