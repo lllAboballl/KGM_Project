@@ -9,13 +9,11 @@ public class ManageScenes : MonoBehaviour
 
     void Update()
     {
-        if (pauseMenu == null) return;
-        
+        if (gamePaused) PauseGame();
+        else UnPauseGame();
+
         if (Input.GetButtonDown("Pause"))
-        {
-            PauseGame();
-        }
-       
+            gamePaused = !gamePaused;
     }
     public void LoadGameScene()
     {
@@ -36,6 +34,7 @@ public class ManageScenes : MonoBehaviour
     }
     public void PauseGame()
     {
+        if (pauseMenu == null) return;
         pauseMenu.SetActive(true);
         gamePaused = true;
         Time.timeScale = 0;
@@ -43,6 +42,7 @@ public class ManageScenes : MonoBehaviour
 
     public void UnPauseGame()
     {
+        if (pauseMenu == null) return;
         pauseMenu.SetActive(false);
         gamePaused = false;
         Time.timeScale = 1;

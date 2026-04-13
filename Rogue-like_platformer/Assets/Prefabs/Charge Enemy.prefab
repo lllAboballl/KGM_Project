@@ -44,8 +44,8 @@ GameObject:
   - component: {fileID: 8866002233150223962}
   - component: {fileID: -8498967757432636762}
   - component: {fileID: 4677499579893822751}
-  - component: {fileID: -7693742718413119001}
-  - component: {fileID: 5326174081738559933}
+  - component: {fileID: 6740412576755963825}
+  - component: {fileID: 3293415653367455831}
   m_Layer: 0
   m_Name: Charge Enemy
   m_TagString: Untagged
@@ -221,18 +221,18 @@ MonoBehaviour:
   chargeCheckDistance: 10
   wallCheckDistance: 0.1
   isCharging: 0
-  chargeTime: 3
+  chargeTime: 2
   isGrounded: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   playerLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 8
   lookPosition: {fileID: 4970413725271536730}
   groundCheckPosition: {fileID: 2027794255500009499}
   forwardCheckPosition: {fileID: 2336197583930088573}
---- !u!114 &-7693742718413119001
+--- !u!114 &6740412576755963825
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -244,11 +244,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b65be28c6047e3b4e93c874188769c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  health: 10
-  maxHealth: 10
+  health: 50
+  maxHealth: 50
   slider: {fileID: 0}
   isPlayer: 0
---- !u!114 &5326174081738559933
+--- !u!114 &3293415653367455831
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -31,12 +31,16 @@ public class Player_Controller : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale == 0) { return; }
+
         Animations();
 
         if (!isAlive) { return; }
+
         TurnPlayer();
 
         if (!canMove) { return; }
+
         Jump();
     }
 
@@ -76,7 +80,9 @@ public class Player_Controller : MonoBehaviour
     }
     void TurnPlayer()
         {
-            if (Input.GetAxisRaw("Horizontal") < 0)
+        if (Time.timeScale == 0) { return; }
+
+        if (Input.GetAxisRaw("Horizontal") < 0)
             {
                 transform.localScale = new Vector3(-1, 1, 1);
                 //spriteRenderer.flipX = true;

@@ -26,14 +26,14 @@ public class Shooter : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale == 0) { return; }
+
         Aim();
         timeSinceLastShot += Time.deltaTime;
     }
 
     void Aim()
     {
-
-
         if (Input.GetButton("Aim"))
         {
             animator.SetBool("aiming", true);
