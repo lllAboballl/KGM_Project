@@ -6,10 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Liams test scene.unity
+    path: Assets/Scenes/GameScene.unity
+    guid: c51f0ed5afdbd0a47ba95c4e4ebddcb3
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 742e1236c81952945b2f19dc262720a6
+  - enabled: 1
+    path: Assets/Scenes/Other scenes/Liams test scene.unity
     guid: 0ce9c787e382bbe4792c7e2cc26c82ca
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Other scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

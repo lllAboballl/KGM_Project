@@ -3,28 +3,23 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] GameObject enemy;
     [SerializeField] Transform[] spawnPositions;
+    [SerializeField] GameObject[] enemy;
 
     Vector3 spawnPosition;
 
     int randomIndex;
 
-    public void SpawnEnemy()
-    { 
-        GenerateList(); 
-        Instantiate(enemy, spawnPosition, Quaternion.identity);
+    public void SpawnEnemy(int enemyIndex)
+    {
+        GeneratePosition();
+        Instantiate(enemy[enemyIndex], spawnPosition, Quaternion.identity);
     }
 
-    void GenerateList()
+    void GeneratePosition()
     {
-
         List<Vector3> positionList = new();
-        /*{
 
-            spawnPositions[1].position, 
-            
-        };*/
         for (int i = 0; i < spawnPositions.Length;) 
         { 
             positionList.Add(spawnPositions[i].position);

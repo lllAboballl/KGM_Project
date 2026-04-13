@@ -43,14 +43,15 @@ public class Health : MonoBehaviour
     {
         if (isPlayer)
         {
-            SceneManager.LoadScene("Liams test scene");
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         else
         {
             Destroy(gameObject);
             xpManager.totalXp += 3;
             xpManager.UpdateXpBar();
-            spawner.SpawnEnemy();
+            spawner.SpawnEnemy(0);
         }
     }
 }
