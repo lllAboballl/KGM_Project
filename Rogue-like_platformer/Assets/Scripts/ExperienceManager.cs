@@ -9,17 +9,21 @@ public class ExperienceManager : MonoBehaviour
     [SerializeField] int currentLevel = 0;
 
     [SerializeField] Image fillimage;
-
     [SerializeField] TextMeshProUGUI levelText;
 
-    void Start()
+    IncreaseStat increaseStat;
+
+    float stat = 1f;
+
+    void Awake()
     {
-        UpdateXpBar();
+        increaseStat = GetComponent<IncreaseStat>();
+        UpdateXpProgression();
     }
 
     void Update()
     {
-        
+        UpdateXpProgression();
     }
 
     int LevelCalculator(int xp)
@@ -27,7 +31,7 @@ public class ExperienceManager : MonoBehaviour
         int calculatedLevel = 0;
         while (xp > 0)
         {
-            xp -= ((int)Mathf.Pow(calculatedLevel, 2.25f) + 2);
+            xp -= ((int)Mathf.Pow(calculatedLevel + 1, 1.5f) + 10);
             calculatedLevel++;
      
         }
@@ -46,8 +50,8 @@ public class ExperienceManager : MonoBehaviour
 
         return requiredXp;
     }
-
-    public void UpdateXpBar()
+    
+    public void UpdateXpProgression()
     {
         currentLevel = LevelCalculator(totalXp);
         levelText.text = currentLevel.ToString();
@@ -55,12 +59,21 @@ public class ExperienceManager : MonoBehaviour
         int xpRequiredForNextLevel = GetXpRequiredForLevel(currentLevel + 1);
         int xpRequiredForCurrentLevel = GetXpRequiredForLevel(currentLevel);
 
+        if ((float)currentLevel / 10f - Mathf.Floor((float)currentLevel / 10f) != 0)
+        {
+            increaseStat.IncreaseStatFunction(stat);
+            Debug.Log("Damn");
+        }
+        else
+        {
+
+            Debug.Log("Zamn");
+        }
+
         float xpAfterLastLevel = (float)totalXp -
             (float)xpRequiredForCurrentLevel;
-
         float xpDifferenceBetweenLastAndNextLevel = (float)xpRequiredForNextLevel -
             (float)xpRequiredForCurrentLevel;
-
         float xpBarPercentage = xpAfterLastLevel / xpDifferenceBetweenLastAndNextLevel;
 
         fillimage.fillAmount = xpBarPercentage;
