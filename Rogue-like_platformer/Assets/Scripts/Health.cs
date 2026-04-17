@@ -51,7 +51,7 @@ public class Health : MonoBehaviour
             Destroy(gameObject);
             xpManager.totalXp += 3;
             xpManager.UpdateXpBar();
-            spawner.SpawnEnemy(0);
+            spawner.SpawnEnemy(Random.Range(0, 1));
         }
     }
 }

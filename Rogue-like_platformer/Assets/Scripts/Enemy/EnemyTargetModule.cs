@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class EnemyTargetModule : EnemyModule
 {
@@ -30,4 +30,4 @@ private void FindTarget()
             enemy.target = null;
         }
     }
-}
+}*/
