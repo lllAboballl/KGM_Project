@@ -2858,6 +2858,7 @@ GameObject:
   m_Component:
   - component: {fileID: 373927614}
   - component: {fileID: 373927613}
+  - component: {fileID: 373927615}
   m_Layer: 0
   m_Name: ExperienceManager
   m_TagString: Untagged
@@ -2896,6 +2897,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &373927615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373927612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b7737c19d343840aea4aebc3a1191f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IncreaseStat
+  stats: []
 --- !u!1 &379066522
 GameObject:
   m_ObjectHideFlags: 0
@@ -11775,6 +11789,7 @@ MonoBehaviour:
   enemy:
   - {fileID: 3747640792381082796, guid: fda752359921b1c49a679f9abbfb12c5, type: 3}
   - {fileID: 1290010618}
+  - {fileID: 7868136703561587878, guid: e1e55215da730124096dae8cd2a16c8f, type: 3}
 --- !u!1001 &1691233058
 PrefabInstance:
   m_ObjectHideFlags: 0
