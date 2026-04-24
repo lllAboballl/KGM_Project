@@ -75,7 +75,9 @@ GameObject:
   - component: {fileID: 7084852024377970051}
   - component: {fileID: 62790065357105224}
   - component: {fileID: 2607602823048117347}
-  m_Layer: 0
+  - component: {fileID: 6558549355158084416}
+  - component: {fileID: 7409916883236839722}
+  m_Layer: 7
   m_Name: Jumping Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,6 +181,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
   lookPosition: {fileID: 7197239983857399322}
   groundCheckPosition: {fileID: 5945143502759388904}
   wallCheckPosition: {fileID: 4695094732490624594}
@@ -245,6 +250,37 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &6558549355158084416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7868136703561587878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39d650c241dea9845bc8b25499a70c54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Damage
+  damage: 2
+  stunTime: 0.5
+  playerHitCooldown: 1
+--- !u!114 &7409916883236839722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7868136703561587878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b65be28c6047e3b4e93c874188769c66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  health: 15
+  maxHealth: 15
+  slider: {fileID: 0}
+  isPlayer: 0
 --- !u!1 &8039856510548044828
 GameObject:
   m_ObjectHideFlags: 0

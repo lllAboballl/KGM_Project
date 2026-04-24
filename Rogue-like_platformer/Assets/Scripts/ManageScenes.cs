@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class ManageScenes : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
+    [SerializeField] Vector2 exitIndex;
 
     bool gamePaused = false;
 
@@ -15,6 +16,7 @@ public class ManageScenes : MonoBehaviour
         if (Input.GetButtonDown("Pause"))
             gamePaused = !gamePaused;
     }
+
     public void LoadGameScene()
     {
         SceneManager.LoadScene("GameScene");
@@ -46,6 +48,14 @@ public class ManageScenes : MonoBehaviour
         pauseMenu.SetActive(false);
         gamePaused = false;
         Time.timeScale = 1;
+    }
+
+
+    //Room stuff
+
+    void LoadRoom()
+    {
+
     }
 
 }
