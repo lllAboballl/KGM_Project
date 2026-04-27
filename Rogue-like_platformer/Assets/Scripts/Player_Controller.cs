@@ -6,6 +6,10 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] float moveSpeed = 10f; 
     [SerializeField] float jumpForce = 18f;
 
+    [SerializeField] int jumpBufferFrames;
+    [SerializeField] float coyoteTime;
+
+
     [Header("Ground Detection")]
     [SerializeField] float groundCheckDistanceX = 0.49f;
     [SerializeField] float groundCheckDistanceY = 0.49f; 
@@ -14,6 +18,9 @@ public class Player_Controller : MonoBehaviour
     
     int playerDirection = 1;
     bool canMove = true;
+
+    int jumpBufferCounter = 0;
+    float coyoteTimeCounter = 0f;
 
     public bool isAlive = true;
     
@@ -41,6 +48,7 @@ public class Player_Controller : MonoBehaviour
 
         if (!canMove) { return; }
 
+        JumpBuffer();
         Jump();
     }
 
@@ -51,11 +59,6 @@ public class Player_Controller : MonoBehaviour
         if (!canMove) { playerRigidbody.linearVelocityX = 0; return; }
 
         MovePlayer();
-    }
-
-    public int GetPlayerDirection()
-    {
-        return playerDirection;
     }
 
     void MovePlayer()
@@ -73,28 +76,45 @@ public class Player_Controller : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetButtonDown("Jump") && TouchingGround())
+        if (jumpBufferCounter > 0 && coyoteTimeCounter > 0)
         {
             playerRigidbody.linearVelocityY = jumpForce;
+            animator.SetTrigger("jump");
+            jumpBufferCounter = 0;
+            coyoteTimeCounter = 0;
         }
     }
+
+    void JumpBuffer()
+    {
+        if (Input.GetButtonDown("Jump")) { jumpBufferCounter = jumpBufferFrames; }
+
+        else { jumpBufferCounter--; }
+
+        if (TouchingGround()) { coyoteTimeCounter = coyoteTime; }
+
+        else { coyoteTimeCounter -= Time.deltaTime; }
+    }
+
     void TurnPlayer()
-        {
+    {
         if (Time.timeScale == 0) { return; }
 
         if (Input.GetAxisRaw("Horizontal") < 0)
-            {
-                transform.localScale = new Vector3(-1, 1, 1);
-                //spriteRenderer.flipX = true;
-                playerDirection = -1;
-            }
-            if (Input.GetAxisRaw("Horizontal") > 0)
-            {
-                transform.localScale = Vector3.one;
-                //spriteRenderer.flipX = false;
-                playerDirection = 1;
-            }
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+            playerDirection = -1;
         }
+        if (Input.GetAxisRaw("Horizontal") > 0)
+        {
+            transform.localScale = Vector3.one;
+            playerDirection = 1;
+        }
+    }
+    public int GetPlayerDirection()
+    {
+        return playerDirection;
+    }
 
     void EnableMovement()
     {
@@ -111,6 +131,7 @@ public class Player_Controller : MonoBehaviour
     {
         animator.SetBool("isMoving", playerRigidbody.linearVelocityX != 0 && Input.GetAxisRaw("Horizontal") != 0);
         animator.SetBool("isGrounded", TouchingGround());
+        animator.SetBool("isFalling", playerRigidbody.linearVelocityY < 0);
     }
 }
 

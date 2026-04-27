@@ -1780,6 +1780,7 @@ GameObject:
   m_Component:
   - component: {fileID: 232373233}
   - component: {fileID: 232373232}
+  - component: {fileID: 232373234}
   m_Layer: 8
   m_Name: RoomExitRight
   m_TagString: RightExit
@@ -1849,6 +1850,22 @@ Transform:
   - {fileID: 1152198787}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &232373234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232373231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf0496dbadf45f648803e19ef9df6fe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomExit
+  transitionTo: 
+  startPoint: {fileID: 0}
+  exitDirection: {x: 0, y: 0}
+  exitTime: 0
 --- !u!1 &283410256
 GameObject:
   m_ObjectHideFlags: 0
@@ -3640,6 +3657,7 @@ GameObject:
   m_Component:
   - component: {fileID: 446723764}
   - component: {fileID: 446723763}
+  - component: {fileID: 446723765}
   m_Layer: 8
   m_Name: RoomExitLeft
   m_TagString: LeftExit
@@ -3709,6 +3727,22 @@ Transform:
   - {fileID: 1595459874}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &446723765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446723762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf0496dbadf45f648803e19ef9df6fe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomExit
+  transitionTo: 
+  startPoint: {fileID: 0}
+  exitDirection: {x: 0, y: 0}
+  exitTime: 0
 --- !u!1 &485060687
 GameObject:
   m_ObjectHideFlags: 0
@@ -7642,6 +7676,51 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1064865855
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1064865857}
+  - component: {fileID: 1064865856}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1064865856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064865855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76549569a2a2d104da8beabc71a9be01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  transitionedFromScene: 
+--- !u!4 &1064865857
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064865855}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1074249205
 GameObject:
   m_ObjectHideFlags: 0
@@ -14701,6 +14780,10 @@ PrefabInstance:
       propertyPath: exitRoomText
       value: 
       objectReference: {fileID: 1595459873}
+    - target: {fileID: 841347044422712953, guid: c2c7da74bef2afa46818e9df641a2ad9, type: 3}
+      propertyPath: swingBufferFrames
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4718733217532170984, guid: c2c7da74bef2afa46818e9df641a2ad9, type: 3}
       propertyPath: slider
       value: 
@@ -14708,6 +14791,30 @@ PrefabInstance:
     - target: {fileID: 4791043280049256798, guid: c2c7da74bef2afa46818e9df641a2ad9, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824533821890960486, guid: c2c7da74bef2afa46818e9df641a2ad9, type: 3}
+      propertyPath: m_ForceReceiveLayers.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6291707202398295376, guid: c2c7da74bef2afa46818e9df641a2ad9, type: 3}
+      propertyPath: shootBufferFrames
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6859951982700873731, guid: c2c7da74bef2afa46818e9df641a2ad9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345408691595032737, guid: c2c7da74bef2afa46818e9df641a2ad9, type: 3}
+      propertyPath: coyoteTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345408691595032737, guid: c2c7da74bef2afa46818e9df641a2ad9, type: 3}
+      propertyPath: coyoteTimeFrames
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345408691595032737, guid: c2c7da74bef2afa46818e9df641a2ad9, type: 3}
+      propertyPath: jumpBufferFrames
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14733,3 +14840,4 @@ SceneRoots:
   - {fileID: 1048621775}
   - {fileID: 446723764}
   - {fileID: 232373233}
+  - {fileID: 1064865857}

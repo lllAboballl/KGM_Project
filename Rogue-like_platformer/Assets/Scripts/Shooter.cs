@@ -4,13 +4,16 @@ public class Shooter : MonoBehaviour
 {
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] float bulletSpeed = 10f;
-    //[SerializeField] float bulletSize = 1f;
+    [SerializeField] float bulletSize = 1f;
     [SerializeField] float firerate = 0.5f;
+
+    [SerializeField] int shootBufferFrames;
 
     float timeSinceLastShot = 0;
     bool canShoot = false;
-
     bool aiming = false;
+
+    int shootBufferCounter = 0;
 
     Player_Controller playerController;
     Swinger swinger;
@@ -28,6 +31,7 @@ public class Shooter : MonoBehaviour
     {
         if (Time.timeScale == 0) { return; }
 
+        ShootBuffer();
         Aim();
         timeSinceLastShot += Time.deltaTime;
     }
@@ -49,7 +53,7 @@ public class Shooter : MonoBehaviour
 
         if (!canShoot || timeSinceLastShot < firerate) { return; }
 
-        if (Input.GetButtonDown("Attack"))
+        if (shootBufferCounter > 0)
         {
             animator.SetTrigger("shoot");
         }
@@ -62,6 +66,14 @@ public class Shooter : MonoBehaviour
             SpawnBullet();
             timeSinceLastShot = 0;
         }
+    }
+
+    void ShootBuffer()
+    {
+        if (Input.GetButtonDown("Attack")) 
+        { shootBufferCounter = shootBufferFrames; }
+
+        else { shootBufferCounter--; }
     }
 
     void EnableShooting()

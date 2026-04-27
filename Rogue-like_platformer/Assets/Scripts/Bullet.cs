@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D other)
+   
+
+    void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player")) return;
+        if (other.gameObject.CompareTag("Player")) { return; }
         else Destroy(gameObject);
     }
 }
