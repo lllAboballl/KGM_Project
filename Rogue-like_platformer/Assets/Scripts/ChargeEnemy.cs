@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 public class ChargeEnemy : MonoBehaviour
 {
 
@@ -16,7 +15,6 @@ public class ChargeEnemy : MonoBehaviour
     [SerializeField] bool isGrounded;
 
     [SerializeField] LayerMask groundLayer;
-    [SerializeField] LayerMask enemyLayer;
     [SerializeField] LayerMask playerLayer;
 
     [SerializeField] Transform lookPosition;
@@ -27,8 +25,12 @@ public class ChargeEnemy : MonoBehaviour
 
     Rigidbody2D enemyRigidbody;
 
-    void Start()
+    EnemySoundManager enemySoundManager;
+
+    void Awake()
     {
+        enemySoundManager = GetComponent<EnemySoundManager>();
+
         enemyRigidbody = GetComponent<Rigidbody2D>();
         currentSpeed = moveSpeed;
     }
@@ -38,7 +40,6 @@ public class ChargeEnemy : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(lookPosition.position, Vector2.down, checkDistance, groundLayer);
         RaycastHit2D groundHit = Physics2D.Raycast(groundCheckPosition.position, Vector2.down, checkDistance / 2, groundLayer);
         RaycastHit2D wallHit = Physics2D.Raycast(forwardCheckPosition.position, Vector2.right, wallCheckDistance, groundLayer);
-        RaycastHit2D enemyHit = Physics2D.Raycast(forwardCheckPosition.position, Vector2.right, wallCheckDistance, enemyLayer);
         RaycastHit2D chargeHit = Physics2D.Raycast(forwardCheckPosition.position, Vector2.right, chargeCheckDistance, playerLayer);
 
         if (hit.collider == null && isGrounded)
@@ -49,6 +50,7 @@ public class ChargeEnemy : MonoBehaviour
         if (groundHit.collider != null)
         {
             isGrounded = true;
+            enemySoundManager.PlayLandingSFX();
         }
         else
         {
@@ -83,6 +85,7 @@ public class ChargeEnemy : MonoBehaviour
 
     void StartCharge()
     {
+        enemySoundManager.PlayChargingSFX();
         currentSpeed = 0f;
         Invoke(nameof(Charge), chargeTime);
 

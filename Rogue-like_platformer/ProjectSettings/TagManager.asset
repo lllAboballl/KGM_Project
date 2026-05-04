@@ -6,10 +6,6 @@ TagManager:
   tags:
   - Enemy
   - Enemy_Jump
-  - LeftExit
-  - RightExit
-  - TopExit
-  - BottomExit
   layers:
   - Default
   - TransparentFX
@@ -19,7 +15,7 @@ TagManager:
   - UI
   - Ground
   - Enemy
-  - RoomExit
+  - 
   - 
   - 
   - 

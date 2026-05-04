@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 4718733217532170984}
   - component: {fileID: 6291707202398295376}
   - component: {fileID: 841347044422712953}
-  - component: {fileID: 644573793349375653}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -209,7 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player_Controller
   moveSpeed: 8
   jumpForce: 18
-  groundCheckDistanceX: 0.789
+  groundCheckDistanceX: 1.4
   groundCheckDistanceY: 2
   groundCheckOffset: 0
   groundLayer:
@@ -228,8 +227,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b65be28c6047e3b4e93c874188769c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  health: 100
-  maxHealth: 100
+  health: 0
+  maxHealth: 10
   slider: {fileID: 0}
   isPlayer: 1
 --- !u!114 &6291707202398295376
@@ -245,8 +244,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   bulletPrefab: {fileID: 8513978963266434032, guid: 2059462ad7cfe7f4a88b185e7c61c5f5, type: 3}
-  bulletSpeed: 50
-  firerate: 0.5
+  bulletSpeed: 10
+  firerate: 0.2
 --- !u!114 &841347044422712953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,19 +261,6 @@ MonoBehaviour:
   swingSpeed: 0.3
   swingHitbox: {fileID: 0}
   swingGraphics: {fileID: 5368403445595533438}
---- !u!114 &644573793349375653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4791043280049256798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55f3a6185ea15c246bbee0c67bd66206, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
-  exitRoomText: {fileID: 0}
 --- !u!1 &6859951982700873731
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +361,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6859951982700873731}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}

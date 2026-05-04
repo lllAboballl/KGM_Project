@@ -1,4 +1,4 @@
-/*using UnityEngine;
+using UnityEngine;
 
 public class EnemyMoveModule : EnemyModule
 {
@@ -129,4 +129,4 @@ public override void Tick()
     Vector2 move = new Vector2(direction.x, 0) * patrolSpeed * Time.fixedDeltaTime;
     rb.MovePosition(rb.position + move);
 }
-}*/
+}

@@ -4,16 +4,13 @@ public class Shooter : MonoBehaviour
 {
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] float bulletSpeed = 10f;
-    [SerializeField] float bulletSize = 1f;
+    //[SerializeField] float bulletSize = 1f;
     [SerializeField] float firerate = 0.5f;
-
-    [SerializeField] int shootBufferFrames;
 
     float timeSinceLastShot = 0;
     bool canShoot = false;
-    bool aiming = false;
 
-    int shootBufferCounter = 0;
+    bool aiming = false;
 
     Player_Controller playerController;
     Swinger swinger;
@@ -31,7 +28,6 @@ public class Shooter : MonoBehaviour
     {
         if (Time.timeScale == 0) { return; }
 
-        ShootBuffer();
         Aim();
         timeSinceLastShot += Time.deltaTime;
     }
@@ -53,10 +49,9 @@ public class Shooter : MonoBehaviour
 
         if (!canShoot || timeSinceLastShot < firerate) { return; }
 
-        if (shootBufferCounter > 0)
+        if (Input.GetButtonDown("Attack"))
         {
             animator.SetTrigger("shoot");
-            shootBufferCounter = 0;
         }
     }
 
@@ -67,14 +62,6 @@ public class Shooter : MonoBehaviour
             SpawnBullet();
             timeSinceLastShot = 0;
         }
-    }
-
-    void ShootBuffer()
-    {
-        if (Input.GetButtonDown("Attack")) 
-        { shootBufferCounter = shootBufferFrames; }
-
-        else { shootBufferCounter--; }
     }
 
     void EnableShooting()
@@ -95,7 +82,7 @@ public class Shooter : MonoBehaviour
 
     void SpawnBullet()
     {
-        bullet = Instantiate(bulletPrefab, transform.position + new Vector3(0.2f * playerController.GetPlayerDirection(), 0.25f, 0), Quaternion.identity);
+        bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
 
         bullet.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * bulletSpeed;
         bullet.GetComponent<Rigidbody2D>().rotation = Mathf.Atan2(Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Horizontal")) * Mathf.Rad2Deg;
