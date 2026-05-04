@@ -56,6 +56,7 @@ public class Shooter : MonoBehaviour
         if (shootBufferCounter > 0)
         {
             animator.SetTrigger("shoot");
+            shootBufferCounter = 0;
         }
     }
 
@@ -94,7 +95,7 @@ public class Shooter : MonoBehaviour
 
     void SpawnBullet()
     {
-        bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        bullet = Instantiate(bulletPrefab, transform.position + new Vector3(0.2f * playerController.GetPlayerDirection(), 0.25f, 0), Quaternion.identity);
 
         bullet.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * bulletSpeed;
         bullet.GetComponent<Rigidbody2D>().rotation = Mathf.Atan2(Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Horizontal")) * Mathf.Rad2Deg;

@@ -8,13 +8,30 @@ public class RoomExit : MonoBehaviour
     [SerializeField] Vector2 exitDirection;
     [SerializeField] float exitTime;
 
+    [SerializeField] GameObject exitText;
+
+    void Start()
+    {
+        if (transitionTo == GameManager.Instance.transitionedFromScene) 
+        { Player_Controller.Instance.transform.position = startPoint.position; }
+    }
+
     void OnTriggerStay2D(Collider2D other)
     {
         if (!other.gameObject.CompareTag("Player")) { return; }
+        exitText.gameObject.SetActive(true);
 
         if (!Input.GetButtonDown("Interact")) { return; }
 
+        GameManager.Instance.transitionedFromScene = SceneManager.GetActiveScene().name;
+
         SceneManager.LoadScene(transitionTo);
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (!other.gameObject.CompareTag("Player")) { return; }
+        exitText.gameObject.SetActive(false);
     }
 }
 

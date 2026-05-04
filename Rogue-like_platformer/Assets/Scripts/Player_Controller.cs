@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class Player_Controller : MonoBehaviour
 {
@@ -28,9 +29,16 @@ public class Player_Controller : MonoBehaviour
     Rigidbody2D playerRigidbody;
     SpriteRenderer spriteRenderer; 
     Animator animator;
-    
+
+    public static Player_Controller Instance;
+
     void Awake()
     {
+        if (Instance != null && Instance != this) { Destroy(gameObject); }
+
+        else { Instance = this; }
+        DontDestroyOnLoad(gameObject);
+
         playerRigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponent<Animator>();
