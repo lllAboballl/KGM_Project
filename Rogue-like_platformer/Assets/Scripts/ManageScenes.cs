@@ -19,7 +19,7 @@ public class ManageScenes : MonoBehaviour
 
     public void LoadGameScene()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("Room1");
         UnPauseGame();
     }
 

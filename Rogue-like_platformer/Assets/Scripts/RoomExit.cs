@@ -12,26 +12,37 @@ public class RoomExit : MonoBehaviour
 
     void Start()
     {
-        if (transitionTo == GameManager.Instance.transitionedFromScene) 
-        { Player_Controller.Instance.transform.position = startPoint.position; }
-    }
+        exitText.SetActive(false);
+        Debug.Log(GameManager.transitionedFromScene);
+        if (GameManager.transitionedFromScene == transitionTo)
+        {
+            Player_Controller.Instance.transform.position = startPoint.position;
 
+            StartCoroutine(Player_Controller.Instance.WalkIntoNewScene(exitDirection, exitTime));
+        }
+
+        StartCoroutine(UIManager.Instance.sceneFader.Fade(SceneFader.FadeDirection.Out));
+    }
     void OnTriggerStay2D(Collider2D other)
     {
         if (!other.gameObject.CompareTag("Player")) { return; }
-        exitText.gameObject.SetActive(true);
+        exitText.SetActive(true);
 
         if (!Input.GetButtonDown("Interact")) { return; }
 
-        GameManager.Instance.transitionedFromScene = SceneManager.GetActiveScene().name;
+        GameManager.transitionedFromScene = SceneManager.GetActiveScene().name;
 
-        SceneManager.LoadScene(transitionTo);
+        Debug.Log(GameManager.transitionedFromScene);
+
+        Player_Controller.Instance.playerState.transitioning = true;
+
+        StartCoroutine(UIManager.Instance.sceneFader.FadeAndLoadScene(SceneFader.FadeDirection.In, transitionTo));
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
         if (!other.gameObject.CompareTag("Player")) { return; }
-        exitText.gameObject.SetActive(false);
+        exitText.SetActive(false);
     }
 }
 

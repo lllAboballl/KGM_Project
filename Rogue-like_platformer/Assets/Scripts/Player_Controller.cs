@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 
 public class Player_Controller : MonoBehaviour
 {
@@ -17,18 +18,19 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] float groundCheckOffset = 0f;
     [SerializeField] LayerMask groundLayer;
     
-    int playerDirection = 1;
+    float playerDirection = 1;
     bool canMove = true;
 
     int jumpBufferCounter = 0;
     float coyoteTimeCounter = 0f;
 
     public bool isAlive = true;
-    
 
+    [HideInInspector] public PlayerStateList playerState;
     Rigidbody2D playerRigidbody;
     SpriteRenderer spriteRenderer; 
     Animator animator;
+   
 
     public static Player_Controller Instance;
 
@@ -42,16 +44,19 @@ public class Player_Controller : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        playerState = GetComponent<PlayerStateList>();
     }
 
     void Update()
     {
+        if (playerState.transitioning == true) return;
         if (Time.timeScale == 0) { return; }
 
         Animations();
 
         if (!isAlive) { return; }
 
+        playerDirection = Input.GetAxisRaw("Horizontal");
         TurnPlayer();
 
         if (!canMove) { return; }
@@ -104,22 +109,39 @@ public class Player_Controller : MonoBehaviour
         else { coyoteTimeCounter -= Time.deltaTime; }
     }
 
+    public IEnumerator WalkIntoNewScene(Vector2 exitDirection, float delay)
+    {
+        if (exitDirection.y > 0)
+        {
+            playerRigidbody.linearVelocity = jumpForce * exitDirection;
+        }
+         
+        if (exitDirection.x != 0)
+        {
+            playerDirection = exitDirection.x > 0 ? 1 : -1;
+        }
+        TurnPlayer();
+
+        yield return new WaitForSeconds(delay);
+        playerState.transitioning = false;
+
+    }
+
+
     void TurnPlayer()
     {
         if (Time.timeScale == 0) { return; }
 
-        if (Input.GetAxisRaw("Horizontal") < 0)
+        if (playerDirection < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
-            playerDirection = -1;
         }
-        if (Input.GetAxisRaw("Horizontal") > 0)
+        if (playerDirection > 0)
         {
             transform.localScale = Vector3.one;
-            playerDirection = 1;
         }
     }
-    public int GetPlayerDirection()
+    public float GetPlayerDirection()
     {
         return playerDirection;
     }
