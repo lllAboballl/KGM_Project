@@ -6,24 +6,28 @@ public class ExperienceManager : MonoBehaviour
 {
     public int totalXp = 1;
 
-    [SerializeField] int currentLevel = 0;
-
     [SerializeField] Image fillimage;
     [SerializeField] TextMeshProUGUI levelText;
 
-    IncreaseStat increaseStat;
+    [SerializeField] Canvas levelUpUI;
 
-    float stat = 1f;
+    StatManager statManager;
+    LevelUpButton levelUpbutton;
 
+    int currentLevel = 1;
+    int levelBeforeCalc = 1;
+    
     void Awake()
     {
-        increaseStat = GetComponent<IncreaseStat>();
+        statManager = GetComponent<StatManager>();
+        levelUpbutton = FindFirstObjectByType<LevelUpButton>();
         UpdateXpProgression();
+
     }
 
     void Update()
     {
-        UpdateXpProgression();
+        //UpdateXpProgression();
     }
 
     int LevelCalculator(int xp)
@@ -37,7 +41,6 @@ public class ExperienceManager : MonoBehaviour
         }
         
         return calculatedLevel;
-        
     }
 
     int GetXpRequiredForLevel(int levelToGet)
@@ -53,22 +56,14 @@ public class ExperienceManager : MonoBehaviour
     
     public void UpdateXpProgression()
     {
+        levelBeforeCalc = currentLevel;
         currentLevel = LevelCalculator(totalXp);
+        if (levelBeforeCalc < currentLevel ) { LevelUp(); }
+
         levelText.text = currentLevel.ToString();
 
         int xpRequiredForNextLevel = GetXpRequiredForLevel(currentLevel + 1);
         int xpRequiredForCurrentLevel = GetXpRequiredForLevel(currentLevel);
-
-        if ((float)currentLevel / 10f - Mathf.Floor((float)currentLevel / 10f) != 0)
-        {
-            increaseStat.IncreaseStatFunction(stat);
-            Debug.Log("Damn");
-        }
-        else
-        {
-
-            Debug.Log("Zamn");
-        }
 
         float xpAfterLastLevel = (float)totalXp -
             (float)xpRequiredForCurrentLevel;
@@ -77,8 +72,23 @@ public class ExperienceManager : MonoBehaviour
         float xpBarPercentage = xpAfterLastLevel / xpDifferenceBetweenLastAndNextLevel;
 
         fillimage.fillAmount = xpBarPercentage;
+    }
 
+    void LevelUp()
+    {
+        Debug.Log("Level Up!");
+        levelUpUI.gameObject.SetActive(true);
+
+        /*
+        if ((float)currentLevel / 10f - Mathf.Floor((float)currentLevel / 10f) != 0)
+        {
+            Debug.Log("Damn");
+        }
+        else
+        {
+            Debug.Log("Zamn");
+        }
+        */
     }
 
 }
-
