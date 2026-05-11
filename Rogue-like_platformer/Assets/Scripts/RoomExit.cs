@@ -13,7 +13,6 @@ public class RoomExit : MonoBehaviour
     void Start()
     {
         exitText.SetActive(false);
-        Debug.Log(GameManager.transitionedFromScene);
         if (GameManager.transitionedFromScene == transitionTo)
         {
             Player_Controller.Instance.transform.position = startPoint.position;
@@ -21,7 +20,14 @@ public class RoomExit : MonoBehaviour
             StartCoroutine(Player_Controller.Instance.WalkIntoNewScene(exitDirection, exitTime));
         }
 
+        Debug.Log(UIManager.Instance.sceneFader.Fade(SceneFader.FadeDirection.Out));
         StartCoroutine(UIManager.Instance.sceneFader.Fade(SceneFader.FadeDirection.Out));
+    }
+
+    void Update()
+    {
+        Debug.Log(UIManager.Instance.sceneFader.Fade(SceneFader.FadeDirection.Out));
+        
     }
     void OnTriggerStay2D(Collider2D other)
     {
@@ -45,55 +51,3 @@ public class RoomExit : MonoBehaviour
         exitText.SetActive(false);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /* [SerializeField] GameObject exitRoomText;
-    [SerializeField] GameObject leftRoomExit;
-    [SerializeField] GameObject rightRoomExit;
-    [SerializeField] GameObject topRoomExit;
-    [SerializeField] GameObject bottomRoomExit;
-
-    void Awake()
-    {
-        exitRoomText.SetActive(false);
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.layer != LayerMask.NameToLayer("Player")) { return; }
-
-        exitRoomText.SetActive(true);
-
-        if (!Input.GetButtonDown("Interact")) { return; }
-        Debug.Log("e");
-        if (gameObject.CompareTag("RightExit"))
-        {
-            Debug.Log("RightExit");
-            other.gameObject.transform.position = leftRoomExit.transform.position;
-        }
-        else if (gameObject.CompareTag("LeftExit"))
-        {
-            Debug.Log("LeftExit");
-            other.gameObject.transform.position = rightRoomExit.transform.position;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.layer != LayerMask.NameToLayer("Player")) { return; }
-
-        exitRoomText.SetActive(false);
-    }*/
-

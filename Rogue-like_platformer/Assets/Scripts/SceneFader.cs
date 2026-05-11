@@ -19,11 +19,11 @@ public class SceneFader : MonoBehaviour
     void Start()
     {
         fadeOutUIImage = GetComponent<Image>();
-    }
-
-    void Update()
-    {
-        
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            Debug.Log("A");
+            Fade(FadeDirection.Out);
+        }
     }
 
     public IEnumerator Fade(FadeDirection fadeDirection)

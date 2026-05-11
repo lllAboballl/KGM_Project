@@ -3615,7 +3615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a55cb77c3446a54cb710b1f1437379a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  offset: {x: 0, y: 0, z: -10}
+  offset: {x: 0, y: 1, z: -10}
   smoothSpeed: 5
 --- !u!1 &543045912
 GameObject:
@@ -9282,6 +9282,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoomExit (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5025243503176342457, guid: c1ba962f76cd38f47ae1214d5348b891, type: 3}
+      propertyPath: m_Size.x
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5060627357810274453, guid: c1ba962f76cd38f47ae1214d5348b891, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2
@@ -12832,9 +12836,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExperienceManager
   totalXp: 1
-  currentLevel: 0
-  fillimage: {fileID: 6050520341554281484}
+  fillImage: {fileID: 0}
   levelText: {fileID: 7017078896601246255}
+  levelUpUI: {fileID: 0}
 --- !u!1 &4578730381041917043
 GameObject:
   m_ObjectHideFlags: 0
@@ -12870,17 +12874,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &6050520341554281484 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 222455860329115064, guid: 94fd1dcb6d428b84ebcc1ea457e7f3ea, type: 3}
-  m_PrefabInstance: {fileID: 8453864090244855904}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &6974997905579804900
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12889,9 +12882,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 117661833663346215, guid: ea7ff7ab22d71ff40bd5be4d1bc54ac8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1522315483045696247}
+    - target: {fileID: 117661833663346215, guid: ea7ff7ab22d71ff40bd5be4d1bc54ac8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadMainMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 873376254465785018, guid: ea7ff7ab22d71ff40bd5be4d1bc54ac8, type: 3}
       propertyPath: m_Name
       value: PauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5945378221163161755, guid: ea7ff7ab22d71ff40bd5be4d1bc54ac8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1522315483045696247}
+    - target: {fileID: 5945378221163161755, guid: ea7ff7ab22d71ff40bd5be4d1bc54ac8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UnPauseGame
       objectReference: {fileID: 0}
     - target: {fileID: 8908420763270302788, guid: ea7ff7ab22d71ff40bd5be4d1bc54ac8, type: 3}
       propertyPath: m_Pivot.x
@@ -13001,7 +13010,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b7737c19d343840aea4aebc3a1191f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IncreaseStat
-  stats: []
 --- !u!1 &7279665943665350714
 GameObject:
   m_ObjectHideFlags: 0
@@ -13086,6 +13094,14 @@ PrefabInstance:
     - target: {fileID: 1493068584709008852, guid: c1ba962f76cd38f47ae1214d5348b891, type: 3}
       propertyPath: m_Name
       value: RoomExit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5025243503176342457, guid: c1ba962f76cd38f47ae1214d5348b891, type: 3}
+      propertyPath: m_Size.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5025243503176342457, guid: c1ba962f76cd38f47ae1214d5348b891, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5060627357810274453, guid: c1ba962f76cd38f47ae1214d5348b891, type: 3}
       propertyPath: m_LocalPosition.x
