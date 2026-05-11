@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public string transitionedFromScene;
+    public static string transitionedFromScene;
 
     public static GameManager Instance { get; private set; }
 
