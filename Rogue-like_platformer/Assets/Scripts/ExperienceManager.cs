@@ -6,7 +6,7 @@ public class ExperienceManager : MonoBehaviour
 {
     public int totalXp = 1;
 
-    [SerializeField] Image fillimage;
+    [SerializeField] Image fillImage;
     [SerializeField] TextMeshProUGUI levelText;
 
     [SerializeField] Canvas levelUpUI;
@@ -56,6 +56,8 @@ public class ExperienceManager : MonoBehaviour
     
     public void UpdateXpProgression()
     {
+        if ( levelText == null || fillImage == null) { return; }
+        
         levelBeforeCalc = currentLevel;
         currentLevel = LevelCalculator(totalXp);
         if (levelBeforeCalc < currentLevel ) { LevelUp(); }
@@ -70,12 +72,13 @@ public class ExperienceManager : MonoBehaviour
         float xpDifferenceBetweenLastAndNextLevel = (float)xpRequiredForNextLevel -
             (float)xpRequiredForCurrentLevel;
         float xpBarPercentage = xpAfterLastLevel / xpDifferenceBetweenLastAndNextLevel;
-
-        fillimage.fillAmount = xpBarPercentage;
+        
+        fillImage.fillAmount = xpBarPercentage;
     }
 
     void LevelUp()
     {
+        if (levelUpUI == null) { return; }
         Debug.Log("Level Up!");
         levelUpUI.gameObject.SetActive(true);
 
