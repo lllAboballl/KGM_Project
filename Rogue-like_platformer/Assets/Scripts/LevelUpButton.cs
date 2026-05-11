@@ -13,6 +13,7 @@ public class LevelUpButton : MonoBehaviour
     StatManager statManager;
 
     string statName;
+    string increaseIntensity = "Increase";
     float statValue;
     Vector2 statIncreaseRange;
     float statIncreaseValue;
@@ -25,7 +26,6 @@ public class LevelUpButton : MonoBehaviour
     void OnEnable()
     {
         statClass = statManager.GetStat("random");
-
         statName = statClass.name;
         statValue = statClass.statValue;
         statIncreaseRange = statClass.increaseRange;
@@ -33,8 +33,16 @@ public class LevelUpButton : MonoBehaviour
         statIncreaseValue = Random.Range(statIncreaseRange.x, statIncreaseRange.y);
         statIncreaseValue = Mathf.Round(10 * statIncreaseValue) / 10;
 
-        buttonText.text = "Stat value:" + statValue +
-          " Stat Name: " + statName + " Increase with: " + statIncreaseValue;
+        int randomNumber = Random.Range(1,5);
+        if (randomNumber == 2) { statIncreaseValue *= 2; }
+        Debug.Log(randomNumber);
+
+        if(statIncreaseValue > statIncreaseRange.y) { increaseIntensity = "Drastically increase"; }
+        else if (statIncreaseValue > statIncreaseRange.y / 2) { increaseIntensity = "Increase"; }
+        else { increaseIntensity = "Slightly increase"; }
+
+        string upgradeInfo = $" {increaseIntensity} {statName}\n{statValue} -> {(statValue + statIncreaseValue)}";
+        buttonText.text = upgradeInfo;
 
         Debug.Log("button " + buttonIndex + " Stat value:" + statValue +
           " Stat Name: " + statName + " Increase with: " + statIncreaseValue);
@@ -43,6 +51,6 @@ public class LevelUpButton : MonoBehaviour
     public void LevelUpButtonFunction()
     {
         Debug.Log("Pressed Button " + buttonIndex);
-        statManager.IncreaseStat(statName, statIncreaseValue);
+        statManager.IncreaseStat(statName, statIncreaseValue); 
     }
 }
